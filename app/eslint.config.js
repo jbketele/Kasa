@@ -26,13 +26,16 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
+      ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      
+      "react/jsx-no-target-blank": "off",
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+    
+      // Désactive les erreurs inutiles
+      "react/react-in-jsx-scope": "off",  // Plus besoin d'importer React depuis React 17
+      "react/jsx-uses-react": "off",      // Plus besoin d'importer React dans JSX
+      "no-unused-vars": "warn",           // Prévenir au lieu d'une erreur bloquante
     },
   },
 ]
