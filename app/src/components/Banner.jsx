@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/Banner.sass";
-import logo from "../assets/logo.png";
+import logo from "../assets/images/logo.png";
 
 const Banner = () => {
     useEffect(() => {
