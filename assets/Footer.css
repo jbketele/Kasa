@@ -1,0 +1,13 @@
+footer {
+  background-color: black;
+  color: white;
+  padding: 66px 464px 29px 463px;
+  gap: 28.5px;
+}
+footer .footer-logo {
+  width: 122px;
+  height: 39px;
+}
+footer p {
+  font-size: 24px;
+}
