@@ -13,11 +13,7 @@ const Home = () => {
       <main>
         <div className="grid">
           {data.map((item) => (
-<<<<<<< HEAD
             <Card key={item.id} id={item.id} title={item.title} cover={item.cover} />
-=======
-            <Card key={item.id} title={item.title} cover={item.cover} />
->>>>>>> 3c233d9dc41cafabfa8460c39aa9190e8ca0a7d0
           ))}
         </div>
       </main>
