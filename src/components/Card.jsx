@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../assets/styles/Card.sass";
 
 const Card = ({ id, cover, title }) => {
@@ -10,6 +11,12 @@ const Card = ({ id, cover, title }) => {
       </div>
     </Link>
   );
+};
+
+Card.propTypes = {
+  id: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Card;

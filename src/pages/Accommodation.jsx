@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Banner from "../components/Banner";
 import data from "../data.json";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faChevronDown, faChevronUp, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function Accommodation() {
   const { id } = useParams();
@@ -34,11 +36,42 @@ function Accommodation() {
     return stars;
   };
 
+  const customRenderArrowPrev = (onClickHandler, hasPrev) =>
+    hasPrev && (
+      <button type="button" onClick={onClickHandler} title="Previous" className="carousel-arrow carousel-arrow-prev">
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+    );
+
+  const customRenderArrowNext = (onClickHandler, hasNext) =>
+    hasNext && (
+      <button type="button" onClick={onClickHandler} title="Next" className="carousel-arrow carousel-arrow-next">
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    );
+
   return (
     <div>
       <Banner />
       <main className="accommodation">
-        <img src={accommodation.cover} alt={accommodation.title} />
+        <Carousel
+          showThumbs={false}
+          showStatus={false}
+          showIndicators={false}
+          infiniteLoop
+          useKeyboardArrows
+          renderArrowPrev={customRenderArrowPrev}
+          renderArrowNext={customRenderArrowNext}
+        >
+          {accommodation.pictures.map((picture, index) => (
+            <div key={index}>
+              <img src={picture} alt={`Slide ${index}`} />
+              <div className="carousel-indicator">
+                {`${index + 1}/${accommodation.pictures.length}`}
+              </div>
+            </div>
+          ))}
+        </Carousel>
         <div className="accommodation-details">
           <div>
             <h1>{accommodation.title}</h1>
