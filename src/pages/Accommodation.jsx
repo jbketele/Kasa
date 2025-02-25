@@ -88,39 +88,4 @@ function Accommodation() {
         <div className="tags-rating">
           <div className="tags">
             {accommodation.tags.map((tag, index) => (
-              <span key={index} className="tag">{tag}</span>
-            ))}
-          </div>
-          <div className="rating">
-            {renderStars(accommodation.rating)}
-          </div>
-        </div>
-        <div className="dropdowns">
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
-              <h2>Description</h2>
-              <FontAwesomeIcon icon={isDescriptionOpen ? faChevronUp : faChevronDown} />
-            </div>
-            {isDescriptionOpen && <p>{accommodation.description}</p>}
-          </div>
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={() => setIsEquipmentsOpen(!isEquipmentsOpen)}>
-              <h2>Équipements</h2>
-              <FontAwesomeIcon icon={isEquipmentsOpen ? faChevronUp : faChevronDown} />
-            </div>
-            {isEquipmentsOpen && (
-              <ul>
-                {accommodation.equipments.map((equipment, index) => (
-                  <li key={index}>{equipment}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
-}
-
-export default Accommodation;
+           
