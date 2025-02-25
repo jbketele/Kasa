@@ -1,14 +1,18 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Banner from "../components/Banner";
 import data from "../data.json";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 function Accommodation() {
   const { id } = useParams();
   const accommodation = data.find(item => item.id === id);
+
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+  const [isEquipmentsOpen, setIsEquipmentsOpen] = useState(false);
 
   if (!accommodation) {
     return <div>Accommodation not found</div>;
@@ -56,6 +60,28 @@ function Accommodation() {
           </div>
           <div className="rating">
             {renderStars(accommodation.rating)}
+          </div>
+        </div>
+        <div className="dropdowns">
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
+              <h2>Description</h2>
+              <FontAwesomeIcon icon={isDescriptionOpen ? faChevronUp : faChevronDown} />
+            </div>
+            {isDescriptionOpen && <p>{accommodation.description}</p>}
+          </div>
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={() => setIsEquipmentsOpen(!isEquipmentsOpen)}>
+              <h2>Équipements</h2>
+              <FontAwesomeIcon icon={isEquipmentsOpen ? faChevronUp : faChevronDown} />
+            </div>
+            {isEquipmentsOpen && (
+              <ul>
+                {accommodation.equipments.map((equipment, index) => (
+                  <li key={index}>{equipment}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </main>
