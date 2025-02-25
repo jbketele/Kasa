@@ -1,15 +1,29 @@
-import Banner from "../components/Banner";
-import Background from "../components/Background";
+import Header from "../components/Header";
 import Card from "../components/Card";
 import "../assets/styles/Home.sass";
 import data from "../data.json";
 import Footer from "../components/Footer";
+import "../assets/styles/Banner.sass";
+import backgroundImg from "../assets/images/background-img.png"; // Import direct
+
 
 const Home = () => {
+  const Banner = () => {
+    return (
+      <div className="banner">
+        <img
+          src={backgroundImg} // Utilisation de l'image importée directement
+          alt="banner-image"
+          className="banner-image"
+        />
+        <div className="background-text">Chez vous, partout et ailleurs</div> {/* Texte statique */}
+      </div>
+    );
+  };
   return (
     <>
+      <Header />
       <Banner />
-      <Background />
       <main>
         <div className="grid">
           {data.map((item) => (

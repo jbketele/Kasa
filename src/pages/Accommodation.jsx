@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Banner from "../components/Banner";
+import Header from "../components/Header";
 import data from "../data.json";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
@@ -52,7 +52,7 @@ function Accommodation() {
 
   return (
     <div>
-      <Banner />
+      <Header />
       <main className="accommodation">
         <Carousel
           showThumbs={false}
@@ -88,4 +88,39 @@ function Accommodation() {
         <div className="tags-rating">
           <div className="tags">
             {accommodation.tags.map((tag, index) => (
-           
+              <span key={index} className="tag">{tag}</span>
+            ))}
+          </div>
+          <div className="rating">
+            {renderStars(accommodation.rating)}
+          </div>
+        </div>
+        <div className="dropdowns">
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
+              <h2>Description</h2>
+              <FontAwesomeIcon icon={isDescriptionOpen ? faChevronUp : faChevronDown} />
+            </div>
+            {isDescriptionOpen && <p>{accommodation.description}</p>}
+          </div>
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={() => setIsEquipmentsOpen(!isEquipmentsOpen)}>
+              <h2>Équipements</h2>
+              <FontAwesomeIcon icon={isEquipmentsOpen ? faChevronUp : faChevronDown} />
+            </div>
+            {isEquipmentsOpen && (
+              <ul>
+                {accommodation.equipments.map((equipment, index) => (
+                  <li key={index}>{equipment}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default Accommodation;

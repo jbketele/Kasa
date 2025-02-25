@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../assets/styles/Banner.sass";
+import "../assets/styles/Header.sass";
 import logo from "../assets/images/logo.png";
 
-const Banner = () => {
+const Header = () => {
     useEffect(() => {
         const link = document.createElement("link");
         link.href = "https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:wght@100..900&display=swap";
@@ -12,7 +12,7 @@ const Banner = () => {
     }, []);
 
     return (
-        <header className="banner">
+        <header>
             <div className="logo-container">
                 <img src={logo} alt="logo" className="logo" />
             </div>
@@ -26,4 +26,4 @@ const Banner = () => {
     );
 };
 
-export default Banner;
+export default Header;
