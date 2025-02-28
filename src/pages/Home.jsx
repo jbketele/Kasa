@@ -16,7 +16,7 @@ const Home = () => {
           alt="banner-image"
           className="banner-image"
         />
-        <div className="background-text">Chez vous, partout et ailleurs</div> {/* Texte statique */}
+        <div className="background-text">Chez vous,<br /> partout et ailleurs</div> {/* Texte statique */}
       </div>
     );
   };

@@ -1,12 +1,22 @@
 .banner
-    width: 1240px
-    height: 223px
+    max-width: 1240px
+    max-height: 223px
     border-radius: 25px
     overflow: hidden
     display: flex
     justify-content: center
     align-items: center
-    margin: 0 auto
+    margin: 0 10%
+
+    @media (max-width: 1024px)
+        max-height: 180px
+
+    @media (max-width: 768px)
+        max-height: 150px
+
+    @media (max-width: 480px)
+        position: relative
+        max-height: 120px
 
     .banner-image
         background: #000000
@@ -20,9 +30,22 @@
         font-family: 'Montserrat', sans-serif
         position: absolute
         color: white
-        font-size: 24px
+        font-size: 48px
         font-weight: bold
         text-align: center
         z-index: 1
-        font-size: 48px
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 1)
+
+        @media (max-width: 768px)
+            font-size: 24px
+            width: 80%
+            text-align: left
+            left: 0
+            margin-left: 16px
+
+        @media (max-width: 480px)
+            font-size: 18px
+            width: 80%
+            text-align: left
+            left: 0
+            margin-left: 16px
