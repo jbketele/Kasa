@@ -72,27 +72,29 @@ function Accommodation() {
             </div>
           ))}
         </Carousel>
-        <div className="accommodation-details">
-          <div>
-            <h1>{accommodation.title}</h1>
-            <p>{accommodation.location}</p>
-          </div>
-          <div className="host-details">
-            <div className="host-name">
-              <p>{firstName}</p>
-              <p>{lastName}</p>
+        <div className="accommodation-info">
+          <div className="accommodation-details">
+            <div>
+              <h1>{accommodation.title}</h1>
+              <p>{accommodation.location}</p>
             </div>
-            <img src={accommodation.host.picture} alt={accommodation.host.name} />
+            <div className="tags">
+              {accommodation.tags.map((tag, index) => (
+                <span key={index} className="tag">{tag}</span>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="tags-rating">
-          <div className="tags">
-            {accommodation.tags.map((tag, index) => (
-              <span key={index} className="tag">{tag}</span>
-            ))}
-          </div>
-          <div className="rating">
-            {renderStars(accommodation.rating)}
+          <div className="host-rating-container">
+            <div className="host-details">
+              <div className="host-name">
+                <p>{firstName}</p>
+                <p>{lastName}</p>
+              </div>
+              <img src={accommodation.host.picture} alt={accommodation.host.name} />
+            </div>
+            <div className="rating">
+              {renderStars(accommodation.rating)}
+            </div>
           </div>
         </div>
         <div className="dropdowns">

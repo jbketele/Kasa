@@ -37,7 +37,9 @@ const About = () => {
   return (
     <>
       <Header />
+      <div className="banner-container">
       <Banner />
+      </div>
       <main>
         <div className="values">
           <div className="dropdown">

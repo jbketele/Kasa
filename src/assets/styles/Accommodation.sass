@@ -1,20 +1,51 @@
 $red: #ff6060
 
-.accommodation-details
-    width: 100%
-    text-align: left
+.accommodation-info
     display: flex
-    justify-content: space-between
-    align-items: flex-start
+    width: 100%
     flex-wrap: wrap
-    font-family: 'Montserrat', sans-serif
+    justify-content: space-between
     margin-top: 30px
+
+    @media (max-width: 480px)
+        margin-top: 0
 
     h1
         color: $red
         margin: 0
         font-size: 36px
         font-weight: 500
+
+        @media (max-width: 480px)
+            font-size: 18px
+    p
+        font-size: 18px
+        font-weight: 500
+        margin: 0
+        line-height: 140%
+
+.accommodation-details
+    width: fit-content
+    text-align: left
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    gap: 20px
+    font-family: 'Montserrat', sans-serif
+
+    @media (max-width: 480px)
+        margin-top: 0
+        gap: 10px
+
+    h1
+        color: $red
+        margin: 0
+        font-size: 36px
+        font-weight: 500
+
+        @media (max-width: 480px)
+            font-size: 18px
+            margin-bottom: 5px
     p
         font-size: 18px
         font-weight: 500
@@ -27,10 +58,13 @@ $red: #ff6060
     align-items: center
     text-align: right
     font-family: 'Montserrat', sans-serif
+    margin-bottom: 20px
+
     .host-name
         display: flex
         flex-direction: column
         align-items: flex-end
+
         p
             margin: 0
             margin-right: 10px
@@ -38,22 +72,21 @@ $red: #ff6060
             font-weight: 500
             color: $red
 
+            @media (max-width: 480px)
+                font-size: 12px
+
     img
-        margin-top: 10px
         border-radius: 50%
         width: 64px
         height: 64px
 
+        @media (max-width: 480px)
+            width: 32px
+            height: 32px
+
 .accommodation
     flex-wrap: wrap
     margin-inline: 100px
-
-.tags-rating
-    width: 100%
-    display: flex
-    justify-content: space-between
-    align-items: center
-    margin-top: 10px
 
 .tags
     display: flex
@@ -69,10 +102,24 @@ $red: #ff6060
         height: 25px
         font-size: 14px
         font-weight: 700
+        line-height: 140%
+        display: flex
+        align-items: center
+        justify-content: center
+
+        @media (max-width: 480px)
+            font-size: 13px
+            width: 84px
+            height: 18px
 
 .rating
     display: flex
     margin-top: 10px
+    gap: 5px
+    font-size: 24px
+
+    @media (max-width: 480px)
+        font-size: 18px
 
 .star-filled
     color: #f87171
@@ -81,14 +128,17 @@ $red: #ff6060
     color: #e0e0e0
 
 .dropdowns
-    margin-bottom: 30px
     display: flex
     justify-content: space-between
     width: 100%
+    margin-top: 24px
+
+    @media (max-width: 768px)
+        gap: 20px
+        margin-bottom: 27px
+        margin-top: 0
 
 .dropdown
-    margin-top: 20px
-    margin-bottom: 20px
     width: 582px
 
     .dropdown-header
@@ -102,11 +152,18 @@ $red: #ff6060
         cursor: pointer
         h2
             margin: 0
+            font-size: 18px
+            font-weight: 700
+
+            @media ( max-width: 480px)
+                font-size: 13px
+
     p
         margin-top: 0
         width: 100%
         text-align: left
         background-color: #f6f6f6
+        font-size: 13px
 
     ul
         margin-top: 0
@@ -120,6 +177,12 @@ $red: #ff6060
 
 .carousel-root
     height: 415px
+
+    @media (max-width: 768px)
+        height: 350px
+
+    @media (max-width: 480px)
+        height: 255px
 
 .carousel
     height: 100%
@@ -169,3 +232,22 @@ $red: #ff6060
     font-size: 18px
     font-weight: 500
     font-family: 'Montserrat', sans-serif
+
+@media (max-width:480px)
+    .accommodation
+        margin-inline: 20px
+        margin-top: 0
+        margin-bottom: 0
+
+    .tags
+        order: 1
+
+    .host-details
+        order: 2
+        margin-bottom: 14px
+
+    .host-rating-container
+        display: flex
+        width: 100%
+        justify-content: space-between
+        margin-top: 16px

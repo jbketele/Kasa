@@ -1,3 +1,7 @@
+.banner-container
+    display: flex
+    justify-content: center
+
 .dropdowns
     flex-wrap: wrap
 
@@ -6,10 +10,16 @@
     flex-direction: column
     align-items: center
     justify-content: center
+    width: 1023px
+    gap: 30px
+
+    @media (max-width: 480px)
+        width: 335px
+        gap: 20px
 
     .dropdown
-        width: 1023px
-        margin: 10px 0
+        width: 100%
+        margin: 0
         border-radius: 5px
         overflow: hidden
 
@@ -33,6 +43,14 @@
 
 .bg-about
     filter: brightness(70%)
+    object-fit: cover
+    width: 100%
+    height: 100%
 
 main
-    margin-bottom: 43px
+    margin-bottom: 38px
+    margin-top: 38px
+
+    @media (max-width: 480px)
+        margin-bottom: 19px
+        margin-top: 19px
