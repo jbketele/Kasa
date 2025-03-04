@@ -11,9 +11,17 @@
     font-family: 'Montserrat', sans-serif
     color: #ff6060
 
+    @media (max-width: 480px)
+        gap: 113px
+        margin-top: 113px
+        margin-bottom: 113px
+
 .number
     font-size: 288px
     margin: 0
+
+    @media (max-width: 480px)
+        font-size: 96px
 
 p
     font-size: 1.5rem
@@ -23,3 +31,7 @@ p
     color: black
     text-transform: underline
     text-decoration: underline // Ajoutez cette ligne pour souligner le lien
+
+@media (max-width: 480px)
+    header
+        padding-bottom: 0

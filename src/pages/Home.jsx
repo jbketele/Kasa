@@ -23,7 +23,9 @@ const Home = () => {
   return (
     <>
       <Header />
+      <div className="banner-container">
       <Banner />
+      </div>
       <main>
         <div className="grid">
           {data.map((item) => (

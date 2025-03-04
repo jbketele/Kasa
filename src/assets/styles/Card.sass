@@ -2,7 +2,6 @@ $primary-color: #f87171
 $secondary-color: #ef4444
 
 .card
-    background: linear-gradient(to bottom, $primary-color, $secondary-color)
     border-radius: 10px
     width: 340px
     height: 340px
@@ -13,8 +12,9 @@ $secondary-color: #ef4444
     font-weight: bold
     position: relative
 
-    &:hover
-        transform: scale(1.05)
+    @media (max-width: 480px)
+        width: 335px
+        height: 255px
 
     .card-cover
         width: 100%
