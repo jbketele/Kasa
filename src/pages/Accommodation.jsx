@@ -1,23 +1,48 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Header from "../components/Header";
-import data from "../data.json";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faChevronDown, faChevronUp, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Collapse from "../components/Collapse";
 
 function Accommodation() {
   const { id } = useParams();
-  const accommodation = data.find(item => item.id === id);
+  const [accommodation, setAccommodation] = useState(null);
+  const [error, setError] = useState(null);
 
-  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
-  const [isEquipmentsOpen, setIsEquipmentsOpen] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+        const foundAccommodation = data.find(item => item.id === id);
+
+        if (!foundAccommodation) {
+          setError("Accommodation not found");
+        } else {
+          setAccommodation(foundAccommodation);
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (error) {
+    return <Navigate to="/not-found" replace />;
+  }
 
   if (!accommodation) {
-    return <div>Accommodation not found</div>;
+    return null;
   }
 
   const [firstName, lastName] = accommodation.host.name.split(' ');
@@ -58,17 +83,19 @@ function Accommodation() {
           showThumbs={false}
           showStatus={false}
           showIndicators={false}
-          infiniteLoop
-          useKeyboardArrows
-          renderArrowPrev={customRenderArrowPrev}
-          renderArrowNext={customRenderArrowNext}
+          infiniteLoop={accommodation.pictures.length > 1} // Désactive la boucle infinie si une seule image
+          useKeyboardArrows={accommodation.pictures.length > 1} // Désactive les flèches clavier si une seule image
+          renderArrowPrev={accommodation.pictures.length > 1 ? customRenderArrowPrev : () => null} // Supprime la flèche précédente si une seule image
+          renderArrowNext={accommodation.pictures.length > 1 ? customRenderArrowNext : () => null} // Supprime la flèche suivante si une seule image
         >
           {accommodation.pictures.map((picture, index) => (
             <div key={index}>
               <img src={picture} alt={`Slide ${index}`} />
-              <div className="carousel-indicator">
-                {`${index + 1}/${accommodation.pictures.length}`}
-              </div>
+              {accommodation.pictures.length > 1 && ( // Affiche l'indicateur uniquement si plusieurs images
+                <div className="carousel-indicator">
+                  {`${index + 1}/${accommodation.pictures.length}`}
+                </div>
+              )}
             </div>
           ))}
         </Carousel>
@@ -98,26 +125,16 @@ function Accommodation() {
           </div>
         </div>
         <div className="dropdowns">
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}>
-              <h2>Description</h2>
-              <FontAwesomeIcon icon={isDescriptionOpen ? faChevronUp : faChevronDown} />
-            </div>
-            {isDescriptionOpen && <p>{accommodation.description}</p>}
-          </div>
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={() => setIsEquipmentsOpen(!isEquipmentsOpen)}>
-              <h2>Équipements</h2>
-              <FontAwesomeIcon icon={isEquipmentsOpen ? faChevronUp : faChevronDown} />
-            </div>
-            {isEquipmentsOpen && (
-              <ul>
-                {accommodation.equipments.map((equipment, index) => (
-                  <li key={index}>{equipment}</li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Collapse title="Description">
+            <p>{accommodation.description}</p>
+          </Collapse>
+          <Collapse title="Équipements">
+            <ul>
+              {accommodation.equipments.map((equipment, index) => (
+                <li key={index}>{equipment}</li>
+              ))}
+            </ul>
+          </Collapse>
         </div>
       </main>
       <Footer />

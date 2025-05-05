@@ -11,7 +11,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/accommodation/:id" element={<Accommodation />} />
-      <Route path="*" element={<NotFound />} /> {/* Ajoutez cette ligne pour gérer les erreurs 404 */}
+      <Route path="/not-found" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
     </Routes>
   );
 }

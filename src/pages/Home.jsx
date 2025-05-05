@@ -1,13 +1,32 @@
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import "../assets/styles/Home.sass";
-import data from "../data.json";
 import Footer from "../components/Footer";
 import "../assets/styles/Banner.sass";
 import backgroundImg from "../assets/images/background-img.png"; // Import direct
 
-
 const Home = () => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const Banner = () => {
     return (
       <div className="banner">
@@ -20,11 +39,16 @@ const Home = () => {
       </div>
     );
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <>
       <Header />
       <div className="banner-container">
-      <Banner />
+        <Banner />
       </div>
       <main>
         <div className="grid">
