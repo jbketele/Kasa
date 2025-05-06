@@ -1,16 +1,16 @@
 import Header from "../components/Header";
 import "../assets/styles/About.sass";
 import Footer from "../components/Footer";
-import backgroundImg from "../assets/images/banner-about.png"; // Import direct
+import backgroundImg from "../assets/images/banner-about.png"; 
 import "../assets/styles/Banner.sass";
-import Collapse from "../components/Collapse"; // Import du composant Collapse
+import Collapse from "../components/Collapse"; 
 
 const About = () => {
   const Banner = () => {
     return (
       <div className="banner">
         <img
-          src={backgroundImg} // Utilisation de l'image importée directement
+          src={backgroundImg} 
           alt="banner-image"
           className="bg-about"
         />

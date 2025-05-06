@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import "../assets/styles/Collapse.sass"; // Ajoutez un fichier de styles si nécessaire
+import "../assets/styles/Collapse.sass"; 
 
 function Collapse({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);

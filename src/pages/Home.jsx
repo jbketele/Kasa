@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import "../assets/styles/Home.sass";
 import Footer from "../components/Footer";
 import "../assets/styles/Banner.sass";
-import backgroundImg from "../assets/images/background-img.png"; // Import direct
+import backgroundImg from "../assets/images/background-img.png"; 
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -31,11 +31,11 @@ const Home = () => {
     return (
       <div className="banner">
         <img
-          src={backgroundImg} // Utilisation de l'image importée directement
+          src={backgroundImg} 
           alt="banner-image"
           className="banner-image"
         />
-        <div className="background-text">Chez vous,<br /> partout et ailleurs</div> {/* Texte statique */}
+        <div className="background-text">Chez vous,<br /> partout et ailleurs</div>
       </div>
     );
   };
