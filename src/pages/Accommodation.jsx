@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Header from "../components/Header";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
@@ -13,6 +11,7 @@ function Accommodation() {
   const { id } = useParams();
   const [accommodation, setAccommodation] = useState(null);
   const [error, setError] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,44 +60,46 @@ function Accommodation() {
     return stars;
   };
 
-  const customRenderArrowPrev = (onClickHandler, hasPrev) =>
-    hasPrev && (
-      <button type="button" onClick={onClickHandler} title="Previous" className="carousel-arrow carousel-arrow-prev">
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </button>
-    );
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? accommodation.pictures.length - 1 : prev - 1));
+  };
 
-  const customRenderArrowNext = (onClickHandler, hasNext) =>
-    hasNext && (
-      <button type="button" onClick={onClickHandler} title="Next" className="carousel-arrow carousel-arrow-next">
-        <FontAwesomeIcon icon={faChevronRight} />
-      </button>
-    );
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev === accommodation.pictures.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div>
       <Header />
       <main className="accommodation">
-        <Carousel
-          showThumbs={false}
-          showStatus={false}
-          showIndicators={false}
-          infiniteLoop={accommodation.pictures.length > 1} // Désactive la boucle infinie si une seule image
-          useKeyboardArrows={accommodation.pictures.length > 1} // Désactive les flèches clavier si une seule image
-          renderArrowPrev={accommodation.pictures.length > 1 ? customRenderArrowPrev : () => null} // Supprime la flèche précédente si une seule image
-          renderArrowNext={accommodation.pictures.length > 1 ? customRenderArrowNext : () => null} // Supprime la flèche suivante si une seule image
-        >
-          {accommodation.pictures.map((picture, index) => (
-            <div key={index}>
-              <img src={picture} alt={`Slide ${index}`} />
-              {accommodation.pictures.length > 1 && ( // Affiche l'indicateur uniquement si plusieurs images
-                <div className="carousel-indicator">
-                  {`${index + 1}/${accommodation.pictures.length}`}
-                </div>
-              )}
-            </div>
-          ))}
-        </Carousel>
+        <div className="carousel">
+          <button 
+            type="button"
+            onClick={handlePrevSlide} 
+            className="carousel-arrow carousel-arrow-prev"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+        <div className="carousel-slide">
+          <img 
+            src={accommodation.pictures[currentSlide]} 
+            alt={`Slide ${currentSlide}`} 
+          />
+        {accommodation.pictures.length > 1 && ( // Affiche l'indicateur uniquement si plusieurs images
+          <div className="carousel-indicator">
+            {`${currentSlide + 1}/${accommodation.pictures.length}`}
+          </div>
+        )}
+        </div>
+          <button
+            type="button"
+            onClick={handleNextSlide} 
+            className="carousel-arrow carousel-arrow-next"
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+
+        </div>
         <div className="accommodation-info">
           <div className="accommodation-details">
             <div>

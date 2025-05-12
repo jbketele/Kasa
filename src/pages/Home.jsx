@@ -50,7 +50,7 @@ const Home = () => {
       <div className="banner-container">
         <Banner />
       </div>
-      <main>
+      <main className="grid-container">
         <div className="grid">
           {data.map((item) => (
             <Card key={item.id} id={item.id} title={item.title} cover={item.cover} />

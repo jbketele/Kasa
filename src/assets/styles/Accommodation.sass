@@ -1,5 +1,8 @@
 $red: #ff6060
 
+#root
+    width: 90%
+
 .accommodation-info
     display: flex
     width: 100%
@@ -86,7 +89,6 @@ $red: #ff6060
 
 .accommodation
     flex-wrap: wrap
-    margin-inline: 100px
 
 .tags
     display: flex
@@ -136,37 +138,35 @@ $red: #ff6060
     @media (max-width: 768px)
         gap: 20px
         margin-bottom: 27px
-        margin-top: 0
+        margin-top: 10px
 
-.carousel-root
+    .collapse
+        width: 45%
+
+        @media (max-width: 768px)
+            width: 100%
+
+.carousel
     height: 415px
-
+    width: 100%
+    position: relative
     @media (max-width: 768px)
         height: 350px
 
     @media (max-width: 480px)
         height: 255px
 
-.carousel
-    height: 100%
-
-.slider-wrapper
-    position: relative
-    overflow: hidden
-    width: 100%
-    height: 100%
-
-    .slider
-        height: 100%
-
-.carousel .slide
+.carousel-slide
     height: 100%
     display: flex
     justify-content: center
     align-items: center
+    position: relative
+    overflow: hidden
 
-.carousel .slide img
+.carousel-slide img
     height: 100%
+    width: 100%
     object-fit: cover
     object-position: center
 
@@ -196,7 +196,7 @@ $red: #ff6060
     font-weight: 500
     font-family: 'Montserrat', sans-serif
 
-@media (max-width:480px)
+@media (max-width:768px)
     .accommodation
         margin-inline: 20px
         margin-top: 0
