@@ -1,21 +1,32 @@
+$red: #ff6060
+
 .collapse
-    border: 1px solid #ddd
     margin-bottom: 1rem
     border-radius: 5px
     overflow: hidden
+    width: 582px
 
-&-header
+.collapse-header
+    background-color: $red
+    color: white
+    padding: 10px 20px 10px 10px
+    border-radius: 10px
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 1rem
-    background-color: #f7f7f7
     cursor: pointer
 
     h2
         margin: 0
-        font-size: 1.2rem
+        font-size: 18px
+        font-weight: 700
 
-&-content
-    padding: 1rem
-    background-color: #fff
+        @media (max-width: 480px)
+            font-size: 13px
+
+.collapse-content p
+    margin-top: 0
+    width: 100%
+    text-align: left
+    background-color: #f6f6f6
+    font-size: 13px
