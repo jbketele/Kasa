@@ -4,14 +4,14 @@ import Header from "../components/Header";
 import "../assets/styles/Accommodation.sass";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import Collapse from "../components/Collapse";
+import Carousel from "../components/Carousel";
 
 function Accommodation() {
   const { id } = useParams();
   const [accommodation, setAccommodation] = useState(null);
   const [error, setError] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,86 +60,53 @@ function Accommodation() {
     return stars;
   };
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? accommodation.pictures.length - 1 : prev - 1));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev === accommodation.pictures.length - 1 ? 0 : prev + 1));
-  };
-
   return (
-    <div>
-      <Header />
-      <main className="accommodation">
-        <div className="carousel">
-          <button 
-            type="button"
-            onClick={handlePrevSlide} 
-            className="carousel-arrow carousel-arrow-prev"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-        <div className="carousel-slide">
-          <img 
-            src={accommodation.pictures[currentSlide]} 
-            alt={`Slide ${currentSlide}`} 
-          />
-        {accommodation.pictures.length > 1 && ( // Affiche l'indicateur uniquement si plusieurs images
-          <div className="carousel-indicator">
-            {`${currentSlide + 1}/${accommodation.pictures.length}`}
-          </div>
-        )}
-        </div>
-          <button
-            type="button"
-            onClick={handleNextSlide} 
-            className="carousel-arrow carousel-arrow-next"
-          >
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-
-        </div>
-        <div className="accommodation-info">
-          <div className="accommodation-details">
-            <div>
-              <h1>{accommodation.title}</h1>
-              <p>{accommodation.location}</p>
-            </div>
-            <div className="tags">
-              {accommodation.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
-              ))}
-            </div>
-          </div>
-          <div className="host-rating-container">
-            <div className="host-details">
-              <div className="host-name">
-                <p>{firstName}</p>
-                <p>{lastName}</p>
+    <>
+      <div className="accomodation-page">
+        <Header/>
+        <main className="accommodation">
+          <Carousel pictures={accommodation.pictures}/>
+          <div className="accommodation-info">
+            <div className="accommodation-details">
+              <div>
+                <h1>{accommodation.title}</h1>
+                <p>{accommodation.location}</p>
               </div>
-              <img src={accommodation.host.picture} alt={accommodation.host.name} />
+              <div className="tags">
+                {accommodation.tags.map((tag, index) => (
+                  <span key={index} className="tag">{tag}</span>
+                ))}
+              </div>
             </div>
-            <div className="rating">
-              {renderStars(accommodation.rating)}
+            <div className="host-rating-container">
+              <div className="host-details">
+                <div className="host-name">
+                  <p>{firstName}</p>
+                  <p>{lastName}</p>
+                </div>
+                <img src={accommodation.host.picture} alt={accommodation.host.name} />
+              </div>
+              <div className="rating">
+                {renderStars(accommodation.rating)}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="dropdowns">
-          <Collapse title="Description">
-            <p>{accommodation.description}</p>
-          </Collapse>
-          <Collapse title="Équipements">
-            <ul>
-              {accommodation.equipments.map((equipment, index) => (
-                <li key={index}>{equipment}</li>
-              ))}
-            </ul>
-          </Collapse>
-        </div>
-      </main>
+          <div className="dropdowns">
+            <Collapse title="Description">
+              <p>{accommodation.description}</p>
+            </Collapse>
+            <Collapse title="Équipements">
+              <ul>
+                {accommodation.equipments.map((equipment, index) => (
+                  <li key={index}>{equipment}</li>
+                ))}
+              </ul>
+            </Collapse>
+          </div>
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

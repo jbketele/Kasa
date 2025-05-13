@@ -1,0 +1,50 @@
+.carousel
+    height: 415px
+    width: 100%
+    position: relative
+
+    @media (max-width: 768px)
+        height: 350px
+
+    @media (max-width: 480px)
+        height: 255px
+
+.carousel-slide
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    overflow: hidden
+
+.carousel-slide img
+    height: 100%
+    width: 100%
+    object-fit: cover
+    object-position: center
+
+.carousel-arrow
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    background: none
+    border: none
+    font-size: 2rem
+    color: #fff
+    cursor: pointer
+    z-index: 2
+
+    &.carousel-arrow-prev
+        left: 10px
+
+    &.carousel-arrow-next
+        right: 10px
+
+.carousel-indicator
+    position: absolute
+    bottom: 10px
+    left: 50%
+    color: #fff
+    font-size: 18px
+    font-weight: 500
+    font-family: 'Montserrat', sans-serif
